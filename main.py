@@ -38,12 +38,12 @@ FuzzyVar = Antecedent(NormData,mf_dim)
 
 #%% Set model
 model = NFN_LSTM(input_dim=input_dim,
-					 mf_dim=mf_dim,
-					 hidden_dim=hidden_dim,
-					 layer_dim=layer_dim,
-					 steps=steps,
-					 bias_model=bias_model
-					 )
+		 mf_dim=mf_dim,
+		 hidden_dim=hidden_dim,
+		 layer_dim=layer_dim,
+		 steps=steps,
+		 bias_model=bias_model
+		 )
 
 #%% Train model and evaluate
 model = training(model,NormData,FuzzyVar)
