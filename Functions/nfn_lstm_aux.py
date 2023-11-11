@@ -10,7 +10,7 @@
 # Automation and Robotics (ICINCO 2023), pages XX-XX, Rome, Italy, 
 # November 13-15 2023. DOI: http://doi.org/XX.XXXX/XXXXX.XXXX.XXXXXX
 # -
-# Available at https://www.jeromemendes.com/
+# Available at https://bit.ly/nfn-lstm, https://www.jeromemendes.com/
 
 #%% Import libraries
 import torch
