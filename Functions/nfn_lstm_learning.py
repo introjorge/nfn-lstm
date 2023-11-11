@@ -10,7 +10,7 @@
 # Automation and Robotics (ICINCO 2023), pages XX-XX, Rome, Italy, 
 # November 13-15 2023. DOI: http://doi.org/XX.XXXX/XXXXX.XXXX.XXXXXX
 # -
-# Available at https://www.jeromemendes.com/
+# Available at https://bit.ly/nfn-lstm, https://www.jeromemendes.com/
 
 #%% Import libraries and manual functions
 import time
@@ -117,7 +117,14 @@ class NFN_LSTM(torch.nn.Module):
 		return output
 
 #%%
-def training(model,NormData,FuzzyVar,opt=1):
+def training(model,
+	     NormData,
+	     FuzzyVar,
+	     learning_rate=1e-1,
+	     epochs=100,
+	     lr_size=5,
+	     lr_gamma=0.95,
+	     opt=1):
 	'''
 	Train the NFN-LSTM model and plot the training and validation losses.
 	
@@ -130,6 +137,14 @@ def training(model,NormData,FuzzyVar,opt=1):
 		individual scalers 'sx' and 'sy' for input and output.
 	FuzzyVar : {dictionary}
 		Stores the antecedent parameters.
+	learning_rate : {float}
+		Learning rate of training.
+	epochs : {int}
+		Number of epochs.
+	lr_size : {int}
+		Period of learning rate decay.
+	lr_gamma : {float}
+		Multiplicative factor of learning rate decay.
 	opt : {int}
 		Allow (1) or not (0) the plotting of the losses after training.
 	
@@ -138,11 +153,6 @@ def training(model,NormData,FuzzyVar,opt=1):
 	model: {torch.nn.Module}
 		The trained NFN-LSTM model.
 	'''
-	learning_rate = 1e-1 # Learning rate
-	epochs = 100 # Number of epochs
-	lr_size = 5 # Period of learning rate decay
-	lr_gamma = 0.95 # Multiplicative factor of learning rate decay.
-	
 	# Loss function and optimizer
 	criterion = torch.nn.MSELoss()
 	optimizer = torch.optim.Adam(model.parameters(),lr=learning_rate)
