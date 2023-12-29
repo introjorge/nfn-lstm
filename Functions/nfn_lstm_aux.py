@@ -4,11 +4,12 @@
 # The "NFN-LSTM" comes with ABSOLUTELY NO WARRANTY;
 # In case of publication of any application of this method, cite the work:
 # -
-# Jorge S. S. Junior, Jerome Mendes, Francisco Souza, and Cristiano Premebida.
+# J. S. S. Junior, J. Mendes, F. Souza, and C. Premebida (2023).
 # Hybrid LSTM-Fuzzy System to Model a Sulfur Recovery Unit.
-# In Proc. of the 20th International Conference on Informatics in Control, 
-# Automation and Robotics (ICINCO 2023), pages XX-XX, Rome, Italy, 
-# November 13-15 2023. DOI: http://doi.org/XX.XXXX/XXXXX.XXXX.XXXXXX
+# In Proceedings of the 20th International Conference on Informatics in
+# Control, Automation and Robotics - Volume 2: ICINCO. SciTePress,
+# pages 281-288. Rome, Italy, November 13-15 2023.
+# DOI: 10.5220/0012165100003543
 # -
 # Available at https://bit.ly/nfn-lstm, https://www.jeromemendes.com/
 
