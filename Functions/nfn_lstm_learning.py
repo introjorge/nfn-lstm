@@ -4,11 +4,12 @@
 # The "NFN-LSTM" comes with ABSOLUTELY NO WARRANTY;
 # In case of publication of any application of this method, cite the work:
 # -
-# Jorge S. S. Junior, Jerome Mendes, Francisco Souza, and Cristiano Premebida.
+# J. S. S. Junior, J. Mendes, F. Souza, and C. Premebida (2023).
 # Hybrid LSTM-Fuzzy System to Model a Sulfur Recovery Unit.
-# In Proc. of the 20th International Conference on Informatics in Control, 
-# Automation and Robotics (ICINCO 2023), pages XX-XX, Rome, Italy, 
-# November 13-15 2023. DOI: http://doi.org/XX.XXXX/XXXXX.XXXX.XXXXXX
+# In Proceedings of the 20th International Conference on Informatics in
+# Control, Automation and Robotics - Volume 2: ICINCO. SciTePress,
+# pages 281-288. Rome, Italy, November 13-15 2023.
+# DOI: 10.5220/0012165100003543
 # -
 # Available at https://bit.ly/nfn-lstm, https://www.jeromemendes.com/
 
@@ -87,8 +88,9 @@ class NFN_LSTM(torch.nn.Module):
 		return out[:,-1,:]
 	
 	# Calculate the final output based on the individual rules (only consequent)
-	def final_output(self,x):
-		individual = torch.einsum('ki,ji->ki',x,self.theta)
+	def final_output(self,lstm_i,antecedent):
+		yi = torch.einsum('ki,ji->ki',lstm_i,self.theta) # Full consequent
+		individual = torch.einsum('ki,ki->ki',antecedent[self.steps-1:,:],yi)
 		output = individual.sum(1) + self.bias_model
 		output = output.unsqueeze(1)
 		return output
@@ -96,8 +98,8 @@ class NFN_LSTM(torch.nn.Module):
 	# Computation of the final output with antecedent and consequent parts
 	def full_est(self,antecedent):
 		lstm_out = self.lstm_pass(antecedent)
-		lstm_out = self.theta_redux(lstm_out)
-		output = self.final_output(lstm_out)
+		lstm_i = self.theta_redux(lstm_out)
+		output = self.final_output(lstm_i,antecedent)
 		return output
 	
 	# Add a new attribute to the model
